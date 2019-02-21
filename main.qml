@@ -26,28 +26,33 @@ import QtQuick.Dialogs 1.0
 
 ApplicationWindow {
     id: window
-    color: "#fafafa"
-    width: 660
-    height: 520
+    color: "#1d1e23"
+    width: 1200
+    height: 800
     visible: true
     title: "DERO GUI Wallet (pre-alpha)"
 
-    
+
+
+
+
        Settings {
         id: settings
         property string style: "Material"
     }
-    
-     Material.background: "#fafafa" 
+
+     Material.background: "#1d1e23"
     property string dbname: ""
 
-    
+
     header: ToolBar {
-        Material.foreground: "black"
+        Material.foreground: "#ffffff"
+        Material.background: "#1d1e23"
 
         RowLayout {
             spacing: 20
             anchors.fill: parent
+
 
             ToolButton {
                 /*contentItem: Image {
@@ -61,7 +66,7 @@ ApplicationWindow {
                 visible: ctxObject.wallet_valid == true ? true : false
                 onClicked: {
                     ctxObject.closewallet()
-                    titleLabel.text = "DERO GUI wallet"
+                    titleLabel.text = "         DERO GUI WALLET"
                     // stackView.clear()
                     if (stackView.depth > 1) {
                         stackView.pop()
@@ -86,6 +91,7 @@ ApplicationWindow {
             }
 
             ToolButton {
+
                 text: "MENU"
                 /*contentItem: Image {
                     fillMode: Image.Pad
@@ -103,26 +109,30 @@ ApplicationWindow {
                     MenuItem {
                         text: "Settings"
                         onTriggered: settingsPopup.open()
+                        Material.foreground: "#ffffff"
                     }
 
                     MenuItem {
                         text: "Seed"
                         onTriggered: validateseedpasswordpopop.open()
                         height: ctxObject.wallet_valid == true ? implicitHeight : 0
+                        Material.foreground: "#ffffff"
                     }
-                    
-                    
+
+
                     MenuItem {
                         text: "Change Password"
                         onTriggered: changepasswordpopop.open()
                         height: ctxObject.wallet_valid == true ? implicitHeight : 0
+                        Material.foreground: "#ffffff"
                     }
-                    
-                    
-                    
+
+
+
                     MenuItem {
-                        text: "Logout " 
+                        text: "Logout "
                         height: ctxObject.wallet_valid == true ? implicitHeight : 0
+                        Material.foreground: "#ffffff"
 
                         onTriggered: {
                             ctxObject.closewallet()
@@ -138,11 +148,13 @@ ApplicationWindow {
                     MenuItem {
                         text: "About"
                         onTriggered: aboutDialog.open()
+                        Material.foreground: "#ffffff"
                     }
 
-                    
+
                     MenuItem {
                         text: "Exit"
+                        Material.foreground: "#ffffff"
 
                         onTriggered: {
                             Qt.quit()
@@ -153,7 +165,7 @@ ApplicationWindow {
         }
     }
 
-    
+
     StackView {
         id: stackView
         anchors.fill: parent
@@ -161,10 +173,18 @@ ApplicationWindow {
         initialItem: Pane {
             id: pane
 
+
             // anchors.fill: parent
             Column {
                 spacing: 10
                 anchors.fill: parent
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: '#212026'
+
+
+                }
 
                 //Layout.fillWidth: true
                 //Layout.alignment: Qt.AlignHCenter
@@ -172,6 +192,7 @@ ApplicationWindow {
                     id: logorect
                     width: 100
                     height: 100
+                    color: '#212026'
                     //Layout.alignment: Qt.AlignHCenter
                     //anchors.left: parent.Left+100 //((parent.right - parent.left) - 100) /2
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -215,7 +236,8 @@ ApplicationWindow {
                         walletfileopendialog.open()
                     }
 
-                    Material.foreground: Material.Primary
+                    Material.foreground: '#fd686e'
+                    Material.background: '#292931'
                     //Material.background: "transparent"
                     Material.elevation: 2
 
@@ -262,7 +284,8 @@ ApplicationWindow {
                         walletfilenewdialog.open()
                     }
 
-                    Material.foreground: Material.Primary
+                    Material.foreground: '#fd686e'
+                    Material.background: '#292931'
                     //Material.background: "transparent"
                     Material.elevation: 2
 
@@ -309,7 +332,8 @@ ApplicationWindow {
                         walletfilerecoverseeddialog.open()
                     }
 
-                    Material.foreground: Material.Primary
+                    Material.foreground: '#fd686e'
+                    Material.background: '#292931'
                     //Material.background: "transparent"
                     Material.elevation: 2
 
@@ -352,7 +376,8 @@ ApplicationWindow {
                         walletfilerecoverkeydialog.open()
                     }
 
-                    Material.foreground: Material.Primary
+                    Material.foreground: '#fd686e'
+                    Material.background: '#292931'
                     //Material.background: "transparent"
                     Material.elevation: 2
 
@@ -397,9 +422,10 @@ ApplicationWindow {
             }
 
             Label {
-                text: "© 2018,  DERO Foundation. All rights reserved.\n"
+                text: "© 2019,  DERO Foundation. All rights reserved.\n"
                       + "Use of this program is governed under DERO research license.\n"
                       + "version " + ctxObject.version
+                color: '#f6f6f6'
 
              //   anchors.margins: 20
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -423,7 +449,6 @@ ApplicationWindow {
 
         width: Math.min(window.width, window.height) / 3 * 2
         contentHeight: openpasswordColumn.height
-
         exit: Transition {
             NumberAnimation {
                 property: "opacity"
@@ -431,7 +456,7 @@ ApplicationWindow {
                 to: 0.0
             }
         }
-        background: Rectangle {  color: window.color; }
+        background: Rectangle {  color: '#22222a' }
 
         Column {
             id: openpasswordColumn
@@ -439,6 +464,7 @@ ApplicationWindow {
 
             Label {
                 text: "Enter Password for " + window.dbname
+                color: '#f06864'
                 width: openpassworddialog.width
                 wrapMode: Label.Wrap
                 font.bold: true
@@ -447,12 +473,17 @@ ApplicationWindow {
             TextField {
                 id: openpassword
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
             Button {
 
                 text: "OK"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
 
                 // isDefault: true
                 onClicked: {
@@ -482,6 +513,10 @@ ApplicationWindow {
 
             Button {
                 text: "Cancel"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 onClicked: {
                     openpassworddialog.close()
                 }
@@ -497,7 +532,7 @@ ApplicationWindow {
         x: (window.width - width) / 2
         y: (window.height - createnewColumn.height) / 2
         width: Math.min(window.width, window.height) / 3 * 2
-        
+
         exit: Transition {
             NumberAnimation {
                 property: "opacity"
@@ -505,7 +540,7 @@ ApplicationWindow {
                 to: 0.0
             }
         }
-        background: Rectangle {  color: window.color; }
+        background: Rectangle {  color: '#22222a' }
 
         Column {
             id: createnewColumn
@@ -513,6 +548,7 @@ ApplicationWindow {
 
             Label {
                 text: "Enter Password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.bold: true
             }
@@ -520,12 +556,14 @@ ApplicationWindow {
             TextField {
                 id: createnewpass
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
             Label {
 
                 text: "Confirm Password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.bold: true
             }
@@ -533,12 +571,17 @@ ApplicationWindow {
             TextField {
                 id: createnewpassconfirm
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "OK"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 //isDefault: true
                 enabled: createnewpass.text == createnewpassconfirm.text ? true : false
                 onClicked: {
@@ -574,6 +617,10 @@ ApplicationWindow {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "Cancel"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 onClicked: {
                     createnewpopup.close()
                 }
@@ -597,7 +644,7 @@ ApplicationWindow {
                 to: 0.0
             }
         }
-        background: Rectangle {  color: window.color; }
+        background: Rectangle {  color: '#22222a' }
 
         Column {
             id: recoverseedwordsColumn
@@ -605,6 +652,7 @@ ApplicationWindow {
 
             Label {
                 text: "25 Seed Words"
+                color: '#f06864'
                 font.bold: true
             }
 
@@ -613,10 +661,12 @@ ApplicationWindow {
                 wrapMode: Label.Wrap
                 width: recoverseedwordspopup.width - 20
                 placeholderText: qsTr("25 seed words")
+                color: '#f06864'
             }
 
             Label {
                 text: "Enter Password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.bold: true
             }
@@ -624,12 +674,14 @@ ApplicationWindow {
             TextField {
                 id: recoverseedwordspass
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
             Label {
 
                 text: "Confirm Password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.bold: true
             }
@@ -637,12 +689,17 @@ ApplicationWindow {
             TextField {
                 id: recoverseedwordspassconfirm
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "OK"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 //isDefault: true
                 enabled: recoverseedwordspass.text
                          == recoverseedwordspassconfirm.text ? true : false
@@ -680,6 +737,10 @@ ApplicationWindow {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "Cancel"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 onClicked: {
                     recoverseedwordspopup.close()
                 }
@@ -703,8 +764,8 @@ ApplicationWindow {
                 to: 0.0
             }
         }
-        
-        background: Rectangle {  color: window.color; }
+
+        background: Rectangle {  color: '#22222a' }
 
         Column {
             id: recoverkeyColumn
@@ -712,6 +773,7 @@ ApplicationWindow {
 
             Label {
                 text: "Recover Key"
+                color: '#f06864'
                 font.bold: true
             }
 
@@ -720,10 +782,12 @@ ApplicationWindow {
                 wrapMode: Label.Wrap
                 width: recoverkeypopup.width - 20
                 placeholderText: qsTr("Recovery Key")
+                color: '#f06864'
             }
 
             Label {
                 text: "Enter Password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.bold: true
             }
@@ -731,12 +795,14 @@ ApplicationWindow {
             TextField {
                 id: recoverkeypass
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
             Label {
 
                 text: "Confirm Password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.bold: true
             }
@@ -744,12 +810,17 @@ ApplicationWindow {
             TextField {
                 id: recoverkeypassconfirm
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "OK"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 //isDefault: true
                 enabled: recoverkeypass.text == recoverkeypassconfirm.text ? true : false
                 onClicked: {
@@ -786,6 +857,10 @@ ApplicationWindow {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "Cancel"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 onClicked: {
                     recoverkeypopup.close()
                 }
@@ -797,15 +872,15 @@ ApplicationWindow {
     function setwalletmode() {
 
         if (ctxObject.wallet_valid == true) {
-            
-            
+
+
             // change status if wallet is open
             if (settings_online_remote.checked == true) {
-                
+
                 if (ctxObject.remote_server == "") { // if empty choo
                             ctxObject.remote_server = remote_server.textAt(remote_server.currentIndex);
                         }
-                        
+
                 // wallet set custom remote server
                 ctxObject.setwalletonline(ctxObject.remote_server)
             }
@@ -855,8 +930,8 @@ ApplicationWindow {
         }
     }
 } */
-    
-    
+
+
     Popup {
         id: changepasswordpopop
         modal: true
@@ -864,8 +939,8 @@ ApplicationWindow {
         x: (window.width - width) / 2
         y: (window.height - changepasswordColumn.height) / 2
 
-        background: Rectangle {  color: window.color; }
-        
+        background: Rectangle {  color: '#22222a' }
+
         width: window.width * 4 / 5 // 80 %
         contentHeight: changepasswordColumn.height
 
@@ -881,29 +956,33 @@ ApplicationWindow {
             id: changepasswordColumn
             spacing: 10
             width: parent.width
-            
+
             Text {
                 text: "Enter Current Password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 //font.bold: true
             }
-            
+
             TextField {
                 id: currentpassword
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
-            
-            
+
+
             Text {
                 text: "Enter new password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 //font.bold: true
             }
-            
+
             TextField {
                 id: newpassword
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
                 onTextChanged: {
                             if (newpassword.text === newpassword1.text) {
@@ -916,6 +995,7 @@ ApplicationWindow {
 
             Text {
                 text: "Confirm new password"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 //font.bold: true
             }
@@ -923,6 +1003,7 @@ ApplicationWindow {
             TextField {
                 id: newpassword1
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
                 onTextChanged: {
                             if (newpassword.text === newpassword1.text) {
@@ -938,7 +1019,11 @@ ApplicationWindow {
                     id: changepasswordokbutton
 
                     text: "OK"
-                    
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
+
 
                     // isDefault: true
                     onClicked: {
@@ -953,9 +1038,9 @@ ApplicationWindow {
 
                             ToolTip.visible = true
                         } else {
-                            
+
                             ctxObject.initerr = ""
-                            
+
                             ctxObject.setpassword(currentpassword.text, newpassword.text)
 
                         if (ctxObject.initerr != "") {
@@ -965,13 +1050,13 @@ ApplicationWindow {
 
                             ToolTip.visible = true
                         } else {
-                            
-                            
+
+
                             // clean up text fields
                             currentpassword.text = ""
                             newpassword.text = ""
                             newpassword1.text = ""
-                            
+
                             ToolTip.delay = -1
                             ToolTip.timeout = 5000
                             ToolTip.text = "Password changed successfully."
@@ -980,9 +1065,9 @@ ApplicationWindow {
 
                             // if successfull
                             changepasswordpopop.close()
-                            
-                            
-                            
+
+
+
                         }
                         }
                     }
@@ -993,6 +1078,10 @@ ApplicationWindow {
 
                 Button {
                     text: "Cancel"
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
                     onClicked: {
                         changepasswordpopop.close()
                     }
@@ -1000,8 +1089,8 @@ ApplicationWindow {
             }
         }
     }
-    
-    
+
+
     Popup {
         id: validateseedpasswordpopop
         modal: true
@@ -1009,8 +1098,8 @@ ApplicationWindow {
         x: (window.width - width) / 2
         y: (window.height - validateseedpasswordColumn.height) / 2
 
-        background: Rectangle {  color: window.color; }
-        
+        background: Rectangle {  color: '#22222a' }
+
         width: window.width * 4 / 5 // 80 %
         contentHeight: validateseedpasswordColumn.height
 
@@ -1026,10 +1115,11 @@ ApplicationWindow {
             id: validateseedpasswordColumn
             spacing: 10
             width: parent.width
-            
+
 
             Text {
                 text: "Enter Password to confirm"
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 //font.bold: true
             }
@@ -1037,6 +1127,7 @@ ApplicationWindow {
             TextField {
                 id: validateseedpassword
                 placeholderText: qsTr("Password")
+                color: '#f06864'
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
             }
 
@@ -1044,6 +1135,10 @@ ApplicationWindow {
                 Button {
 
                     text: "OK"
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
 
                     // isDefault: true
                     onClicked: {
@@ -1058,15 +1153,15 @@ ApplicationWindow {
 
                             ToolTip.visible = true
                         } else {
-                            
+
                             // clean up text fields
                             validateseedpassword.text = ""
 
                             // if successfull
                             validateseedpasswordpopop.close()
-                            
+
                             seedPopup.open()
-                            
+
                         }
                     }
                 }
@@ -1076,6 +1171,10 @@ ApplicationWindow {
 
                 Button {
                     text: "Cancel"
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
                     onClicked: {
                         validateseedpasswordpopop.close()
                     }
@@ -1083,7 +1182,7 @@ ApplicationWindow {
             }
         }
     }
-    
+
     Popup {
         id: seedPopup
         x: (window.width - width) / 2
@@ -1092,8 +1191,8 @@ ApplicationWindow {
         height: seedColumn.implicitHeight + topPadding + bottomPadding
         modal: true
         focus: true
-        
-        background: Rectangle {  color: window.color; }
+
+        background: Rectangle {  color: '#22222a' }
 
         onAboutToShow: {
            // seed_language.currentIndex = 9
@@ -1115,12 +1214,13 @@ ApplicationWindow {
                 width: parent.width
                 wrapMode: Label.Wrap
                 text: "Wallet SEED (Please keep this seed safe and secure. This can be used to restore your wallet.If seed is lost, you have LOST you wallet !!)"
+                color: '#f06864'
                 font.bold: true
-                color: "red"
             }
 
             Label {
                 text: "Seed Language:"
+                color: '#f06864'
             }
 
             ComboBox {
@@ -1173,6 +1273,7 @@ ApplicationWindow {
                 selectByMouse: true
                 readOnly: true
                 text: ctxObject.seed
+                color: '#f06864'
             }
 
             RowLayout {
@@ -1185,9 +1286,10 @@ ApplicationWindow {
                         seedPopup.close()
                     }
 
-                    Material.foreground: Material.primary
-                    //  Material.background: "transparent"
-                    Material.elevation: 0
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
 
                     Layout.preferredWidth: 0
                     Layout.fillWidth: true
@@ -1204,7 +1306,7 @@ ApplicationWindow {
         height: settingsColumn.implicitHeight + topPadding + bottomPadding
         modal: true
         focus: true
-        background: Rectangle {  color: window.color; }
+        background: Rectangle {  color: '#22222a' }
 
         contentItem: ColumnLayout {
             id: settingsColumn
@@ -1212,6 +1314,7 @@ ApplicationWindow {
 
             Label {
                 text: "Settings"
+                color: '#f06864'
                 font.bold: true
             }
 
@@ -1219,6 +1322,7 @@ ApplicationWindow {
                 id: settings_online_remote
                 text: "Wallet Online (Remote)"
                 checked: true
+                Material.foreground: "#f06864"
                 onClicked: {
                     if (settings_online_remote.checked == true) {
                         ctxObject.remote_server = remote_server.textAt(
@@ -1243,6 +1347,7 @@ ApplicationWindow {
             Switch {
                 id: settings_online_local
                 text: "Wallet Online (local 127.0.0.1:20206)"
+                Material.foreground: "#f06864"
                 checked: false
 
                 onClicked: {
@@ -1268,11 +1373,13 @@ ApplicationWindow {
 
                 Label {
                     text: "Remote server:"
+                    color: '#f06864'
                 }
 
                 ComboBox {
                     id: remote_server
                     model: [ /*"http://localhost:20206/",*/ "https://rwallet.dero.io", "https://rwallet.dero.live", "https://rwallet1.dero.io","https://rwallet1.dero.live"]
+                    Material.foreground: "#f06864"
                     Component.onCompleted: {
                         currentIndex = 0
                     }
@@ -1307,9 +1414,10 @@ ApplicationWindow {
                         settingsPopup.close()
                     }
 
-                    Material.foreground: Material.primary
-                    Material.background: "transparent"
-                    Material.elevation: 0
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
 
                     Layout.preferredWidth: 0
                     Layout.fillWidth: true
@@ -1332,8 +1440,8 @@ ApplicationWindow {
             }
         }
     }
-    
-    
+
+
 
     Popup {
         id: aboutDialog
@@ -1344,17 +1452,21 @@ ApplicationWindow {
         width: Math.min(window.width, window.height) / 10 * 9
         contentHeight: aboutColumn.height
 
-        background: Rectangle {  color: window.color; }
-             
-             
-             
+        background: Rectangle {  color: '#22222a' }
+
+
+
         Column {
             id: aboutColumn
             spacing: 5
-            
-            
+
+
             Button {
                     text: "OK"
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
                     onClicked: {
                         aboutDialog.close()
                     }
@@ -1362,12 +1474,13 @@ ApplicationWindow {
 
             Label {
                 text: "About DERO GUI Wallet"
+                color: '#f06864'
                 font.bold: true
             }
 
             Label {
                 width: aboutDialog.availableWidth
-                text: 'DERO is decentralized DAG(Directed Acyclic Graph) based blockchain with enhanced reliability, privacy, security, and usability.DERO is industry leading and the first blockchain to have bulletproofs, TLS encrypted Network. <br/>DERO blockchain has the following salient features:' + 
+                text: 'DERO is decentralized DAG(Directed Acyclic Graph) based blockchain with enhanced reliability, privacy, security, and usability.DERO is industry leading and the first blockchain to have bulletproofs, TLS encrypted Network. <br/>DERO blockchain has the following salient features:' +
                 " <ul>" +
                 "<li>DAG Based: No orphan blocks, No soft-forks.</li>"+
                 "<li>Extremely fast transactions with 2 minutes confirmation time.</li>"+
@@ -1381,6 +1494,7 @@ ApplicationWindow {
                 "<li>Developed and maintained by original developers.</li>"+
                 "</ul>"+
                 '<br/>Please visit <a href="https://www.dero.io">DERO website</a> for more information (support).'
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.pixelSize: 12
                 onLinkActivated: {
@@ -1391,6 +1505,7 @@ ApplicationWindow {
             Label {
                 width: aboutDialog.availableWidth
                 text: "This program is pre-alpha and is being used/deployed to evaluate QT framework (5.11) and therecipe GO QT bindings for its suitablity for particular purpose. <br/>V" + ctxObject.version
+                color: '#f06864'
                 wrapMode: Label.Wrap
                 font.pixelSize: 12
                 onLinkActivated: {
@@ -1398,6 +1513,67 @@ ApplicationWindow {
                 }
             }
         }
-        
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*##^## Designer {
+    D{i:82;invisible:true}D{i:80;invisible:true}D{i:76;invisible:true}D{i:97;invisible:true}
+D{i:95;invisible:true}D{i:91;invisible:true}D{i:102;invisible:true}D{i:113;invisible:true}
+D{i:124;invisible:true}
+}
+ ##^##*/
