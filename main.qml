@@ -26,7 +26,7 @@ import QtQuick.Dialogs 1.0
 
 ApplicationWindow {
     id: window
-    color: "#fffafafa"
+    color: "#fafafa"
     width: 660
     height: 520
     visible: true
