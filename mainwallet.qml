@@ -13,6 +13,8 @@
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import QtQuick 2.6
 import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
+import QtQuick.Controls.Universal 2.0
 
 Page {
     id: page
@@ -47,35 +49,42 @@ Page {
                 width: parent.width
                 text: "Destination : " + "<b>" + daddr.text + "</b>"
                 wrapMode: Text.Wrap
+                color: '#ffffff'
             }
             Text {
                 text: "Transferring : " + "<b>" + ctxObject.tx_transfer_amount + " DERO" + "</b>"
                 wrapMode: Text.Wrap
+                color: '#ffffff'
             }
 
             Text {
                 width: parent.width
                 text: "TXID : " + "<b>" + ctxObject.txid_hex + "</b>"
                 wrapMode: Text.Wrap
+                color: '#ffffff'
             }
 
             Text {
                 text: "Total Amount Selected : " + "<b>" + ctxObject.tx_total + " DERO" + "</b>"
                 wrapMode: Text.Wrap
+                color: '#ffffff'
             }
 
             Text {
                 text: "Change (will come back) : " + "<b>" + ctxObject.tx_change + " DERO" + "</b>"
                 wrapMode: Text.Wrap
+                color: '#ffffff'
             }
 
             Text {
                 text: "Fees : " + "<b>" + ctxObject.tx_fees + " DERO" + "</b>"
                 wrapMode: Text.Wrap
+                color: '#ffffff'
             }
 
             Text {
                 text: "Enter Password to confirm"
+                color: '#ffffff'
                 wrapMode: Label.Wrap
                 //font.bold: true
             }
@@ -84,12 +93,18 @@ Page {
                 id: validatetemporarypassword
                 placeholderText: qsTr("Password")
                 echoMode: TextInput.Password //TextInput.PasswordEchoOnEdit
+                color: '#ffffff'
             }
 
             Row {
                 Button {
 
                     text: "Send Transaction"
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
+
 
                     // isDefault: true
                     onClicked: {
@@ -138,6 +153,10 @@ Page {
 
                 Button {
                     text: "Cancel"
+                    Material.foreground: '#f06864'
+                    Material.background: '#292931'
+                    //Material.background: "transparent"
+                    Material.elevation: 2
                     onClicked: {
                         validatetemporarypasswordpopop.close()
                     }
@@ -201,6 +220,7 @@ Page {
                         wrapMode: Label.Wrap
                         horizontalAlignment: Qt.AlignHCenter
                         text: "SEND DERO to another user"
+                        color: '#ffffff'
                     }
 
                     Rectangle {
@@ -214,11 +234,13 @@ Page {
                         wrapMode: Label.Wrap
                         // horizontalAlignment: Qt.AlignHCenter
                         text: "Destination Address"
+                        color: '#ffffff'
                     }
 
                     TextField {
                         id: daddr
                         placeholderText: qsTr("Destination address")
+                        color: '#ffffff'
                         width: parent.width
                         wrapMode: TextField.Wrap
                         selectByMouse: true
@@ -264,12 +286,14 @@ Page {
                         wrapMode: Label.Wrap
                         //horizontalAlignment: Qt.AlignHCenter
                         text: "Amount (in DERO)"
+                        color: '#ffffff'
                     }
 
                     TextField {
                         id: damount
                         placeholderText: qsTr("0.0")
                         selectByMouse: true
+                        color: '#ffffff'
 
                         onTextChanged: {
                             ctxObject.amountVerify(text)
@@ -294,6 +318,7 @@ Page {
                         wrapMode: Label.Wrap
                         // horizontalAlignment: Qt.AlignHCenter
                         text: "Payment ID (16 or 64 hex characters) Optional"
+                        color: '#ffffff'
                     }
 
                     TextField {
@@ -302,6 +327,7 @@ Page {
                         wrapMode: TextField.Wrap
                         selectByMouse: true
                         placeholderText: qsTr("16 or 64 hex characters")
+                        color: '#ffffff'
 
                         onTextChanged: {
                             ctxObject.paymentidVerify(sendpaymentid.text)
@@ -328,6 +354,10 @@ Page {
                         Button {
 
                             text: "Send NOW"
+                            Material.foreground: '#f06864'
+                            Material.background: '#292931'
+                            //Material.background: "transparent"
+                            Material.elevation: 2
                             anchors.horizontalCenter: parent.horizontalCenter
                             // isDefault: true
                             onClicked: {
@@ -356,6 +386,11 @@ Page {
                         Button {
 
                             text: "Donate"
+                            Material.foreground: '#f06864'
+                            Material.background: '#292931'
+                            //Material.background: "transparent"
+                            Material.elevation: 2
+
                             anchors.right: parent.right
                             // isDefault: true
                             // anchors.horizontalCenter: Qt.AlignRight
@@ -479,6 +514,7 @@ property int curPos
                         wrapMode: Label.Wrap
                         horizontalAlignment: Qt.AlignHCenter
                         text: "Receive DERO from another user"
+                        color: '#ffffff'
                     }
 
                     Row {
@@ -489,12 +525,17 @@ property int curPos
                             anchors.verticalCenter: parent.verticalCenter
                             text: "Your Address : " // + ctxObject.wallet_address
                             font.bold: true
+                            color: '#ffffff'
                         }
 
                         Button {
                             anchors.verticalCenter: parent.verticalCenter
                             // horizontalAlignment: Qt.AlignHCenter
                             text: "copy"
+                            Material.foreground: '#f06864'
+                            Material.background: '#292931'
+                            //Material.background: "transparent"
+                            Material.elevation: 2
 
                             /*  icon.color: "transparent" // not available in 5.8
                               icon.source: "qrc:/images/copy.svg"
@@ -515,11 +556,16 @@ property int curPos
                         selectByMouse: true
                         readOnly: true
                         text: ctxObject.wallet_address
+                        color: '#ffffff'
                     }
 
                     Button {
 
                         text: "Generate Address with Payment ID (Integrated Address)"
+                        Material.foreground: '#f06864'
+                        Material.background: '#292931'
+                        //Material.background: "transparent"
+                        Material.elevation: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                         // isDefault: true
                         onClicked: {
@@ -532,12 +578,17 @@ property int curPos
                             anchors.verticalCenter: parent.verticalCenter
                             text: "Integrated Address Random32 : "
                             font.bold: true
+                            color: '#ffffff'
                         }
 
                         Button {
                             anchors.verticalCenter: parent.verticalCenter
                             // horizontalAlignment: Qt.AlignHCenter
                             text: "copy"
+                            Material.foreground: '#f06864'
+                            Material.background: '#292931'
+                            //Material.background: "transparent"
+                            Material.elevation: 2
                             /*  icon.color: "transparent" // not available in 5.8
                               icon.source: "qrc:/images/copy.svg"
                           */
@@ -560,6 +611,7 @@ property int curPos
                         selectByMouse: true
                         readOnly: true
                         text: ctxObject.integrated_32_address
+                        color: '#ffffff'
                     }
 
                     Row {
@@ -567,12 +619,17 @@ property int curPos
                             anchors.verticalCenter: parent.verticalCenter
                             text: "Integrated 32 byte payment id: "
                             font.bold: true
+                            color: '#ffffff'
                         }
 
                         Button {
                             anchors.verticalCenter: parent.verticalCenter
                             // horizontalAlignment: Qt.AlignHCenter
                             text: "copy"
+                            Material.foreground: '#f06864'
+                            Material.background: '#292931'
+                            //Material.background: "transparent"
+                            Material.elevation: 2
                             /*  icon.color: "transparent" // not available in 5.8
                               icon.source: "qrc:/images/copy.svg"
                           */
@@ -596,6 +653,7 @@ property int curPos
                         selectByMouse: true
                         readOnly: true
                         text: ctxObject.integrated_32_address_paymentid
+                        color: '#ffffff'
                     }
 
                     Label {
@@ -605,6 +663,7 @@ property int curPos
                         text: "Integrated Address Random8 : "
                         font.bold: true
                         visible: false
+                        color: '#ffffff'
                     }
 
                     TextField {
@@ -615,6 +674,7 @@ property int curPos
                         readOnly: true
                         visible: false
                         text: ctxObject.integrated_8_address
+                        color: '#ffffff'
                     }
 
                     Label {
@@ -624,6 +684,7 @@ property int curPos
                         text: "Integrated 8 byte payment id (Encrypted) : "
                         font.bold: true
                         visible: false
+                        color: '#ffffff'
                     }
 
                     TextField {
@@ -634,6 +695,7 @@ property int curPos
                         readOnly: true
                         visible: false
                         text: ctxObject.integrated_8_address_paymentid
+                        color: '#ffffff'
                     }
                 }
             }
@@ -693,6 +755,10 @@ property int curPos
 
                         id: reloadhistorybutton
                         text: "Reload transaction history"
+                        Material.foreground: '#f06864'
+                        Material.background: '#292931'
+                        //Material.background: "transparent"
+                        Material.elevation: 2
                         anchors.horizontalCenter: parent.horizontalCenter
                         // isDefault: true
                         onClicked: {
@@ -779,6 +845,7 @@ property int curPos
                         wrapMode: TextArea.Wrap
                         selectByMouse: true
                         readOnly: true
+                        color: '#ffffff'
                         font.family: "Monospace"
                         textFormat: TextArea.RichText
                         //text: counter+ " " +  bheight +"/" + topoheight + " " + amount + ' DERO  <a href="http://yahoo.com">' + txid + "</a> "+ "<font color='#6c3483'>" + payid +"</font>" + details ;
@@ -800,6 +867,7 @@ property int curPos
                         font.family: "Monospace"
                         textFormat: TextArea.RichText
                         text: "108272/111614 7.992500000000 DERO afe4379e7656667aafc223c98a24884624dbc5edb652644d920af2d3d92c5202  afe4379e7656667aafc223c98a24884624dbc5edb652644d920af2d3d92c5202     "
+                        color: '#ffffff'
                     }
                 }
             }
@@ -826,6 +894,7 @@ property int curPos
                         wrapMode: Label.Wrap
                         horizontalAlignment: Qt.AlignHCenter
                         text: "About DERO project"
+                        color: '#ffffff'
                     }
 
                     Text {
@@ -838,7 +907,7 @@ property int curPos
                         text: 'DERO is decentralized DAG(Directed Acyclic Graph) based blockchain with enhanced reliability, privacy, security, and usability.DERO is industry leading and the first blockchain to have bulletproofs, TLS encrypted Network. <br/>DERO blockchain has the following salient features:'
                               + " <ul>" + "<li>DAG Based: No orphan blocks, No soft-forks.</li>"
                               + "<li>Extremely fast transactions with 2 minutes confirmation time.</li>" + "<li>12 Second Block time.</li>" + "<li>SSL/TLS P2P Network.</li>" + "<li>CryptoNote: Fully Encrypted Blockchain</li>" + "<li>BulletProofs: Zero Knowledge range-proofs(NIZK).</li>" + "<li>Ring signatures.</li>" + "<li>Fully Auditable Supply.</li>" + "<li>DERO blockchain is written from scratch in Golang.</li>" + "<li>Developed and maintained by original developers.</li>" + "</ul>" + '<br/>Please visit <a href="https://www.dero.io">DERO website</a> for more information (support).'
-
+                        color: '#ffffff'
                         onLinkActivated: {
                             Qt.openUrlExternally(link)
                         }
@@ -867,13 +936,20 @@ property int curPos
 
     footer: Column {
 
+
+
         TabBar {
             id: tabBar
             currentIndex: swipeView.currentIndex
             width: parent.width
 
+
             TabButton {
                 text: "Send"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 onClicked: {
                     titleLabel.text = "Send DERO"
                     console.log(tabBar.height)
@@ -881,25 +957,41 @@ property int curPos
             }
             TabButton {
                 text: "Receive"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 // onClicked: {  titleLabel.text = "Receive DERO" }
             }
             TabButton {
                 text: "History"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 // onClicked: {  titleLabel.text = "Transaction History" }
             }
             TabButton {
                 text: "About"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
                 // onClicked: {  titleLabel.text = "DERO Balance" }
             }
             TabButton {
 
                 //    text: "Donate"
                 text: "Smart Contracts/Assets"
+                Material.foreground: '#f06864'
+                Material.background: '#292931'
+                //Material.background: "transparent"
+                Material.elevation: 2
             }
         }
 
         Rectangle {
-            color: "lightgrey"
+            color: "#292931"
             width: parent.width
             height: height_tracker.height * 3
 
